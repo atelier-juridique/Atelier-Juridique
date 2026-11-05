@@ -70,6 +70,41 @@ textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #93c8f51c}
 .footer{color:var(--muted);font-size:.78rem;text-align:center;margin-top:22px}
 @media(max-width:950px){main{grid-template-columns:1fr}aside{position:static}.home-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.home-grid{grid-template-columns:1fr}.maprow{grid-template-columns:1fr}.workspace{padding:16px}}
+
+:root{color-scheme:light dark;--bg:#f3f2ee;--panel:#fff;--panel2:#f4f4f0;--ink:#252b30;--muted:#5d676d;--line:#d4d8d5;--blue:#285b61;--green:#286848;--red:#a33540;--gold:#76613e}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,sans-serif}
+header{background:var(--panel);border-bottom:1px solid var(--line);padding:32px 4vw}
+h1,h2,.home-card h3{font-family:Georgia,serif;font-weight:500;letter-spacing:-.025em}
+h1{font-size:clamp(2rem,4vw,3rem);line-height:1.2}
+.kicker,.subtitle,.header-tags span{color:var(--muted)}
+.header-tags span{border-color:var(--line);border-radius:4px}
+main{max-width:1360px;grid-template-columns:260px minmax(0,1fr);gap:24px}
+aside,.workspace{border-radius:6px;box-shadow:none}
+.subject{border-radius:4px;padding:14px 10px}
+.subject.active,.option.selected{background:var(--panel2);border-color:var(--blue)}
+.btn,.option,.home-card,.case,.feedback,.orderitem,textarea{border-radius:5px;box-shadow:none}
+.btn,.pill,.chip,.orderitem,.orderitem button,.home-card,.case,.feedback{background:var(--panel2);color:var(--ink);border-color:var(--line)}
+.btn.primary{background:var(--blue);color:var(--panel);border-color:var(--blue)}
+.btn:hover{transform:none}
+.option,textarea,.maprow select,.classrow select{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.option:hover{background:var(--panel2);border-color:var(--blue)}
+.progress{background:var(--line)}
+.option input{accent-color:var(--blue)}
+.feedback.good,.chip.hit,.section-complete{background:var(--panel2);color:var(--green);border-color:var(--green)}
+.feedback.bad,.chip.miss{background:var(--panel2);color:var(--red);border-color:var(--red)}
+.maprow{border-color:var(--line)}
+.home-card p{min-height:0}
+.home-card .number{color:var(--blue)}
+.chapter-grid{display:grid;gap:12px;margin:24px 0}
+.chapter-card{padding:18px;border:1px solid var(--line);border-radius:5px}
+.chapter-card h3{margin:0 0 6px;font:1.15rem Georgia,serif}
+.revision-item{padding:18px 0;border-bottom:1px solid var(--line)}
+.revision-item h3{font-size:1rem;margin:0 0 8px}
+.revision-item p{margin:8px 0}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@media(prefers-color-scheme:dark){:root{--bg:#1b1e20;--panel:#24282b;--panel2:#2b3033;--ink:#e8e8e2;--muted:#b2babd;--line:#495154;--blue:#9bc6c7;--green:#9acbac;--red:#f1a4ab;--gold:#d1bc94}.btn.primary{color:#1b1e20}}
+@media(max-width:950px){main{grid-template-columns:1fr}aside{position:static}}
+@media(max-width:600px){.home-grid{grid-template-columns:1fr}.maprow{grid-template-columns:1fr}.workspace{padding:16px}.actions .btn{flex-grow:1}}
 </style>
 </head>
 <body>
@@ -77,11 +112,11 @@ textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #93c8f51c}
  <div class="kicker">Révisions · entraînement approfondi</div>
  <h1>Atelier juridique</h1>
  <p class="subtitle">Une seule plateforme pour la procédure civile, le droit commun des sociétés et les contrats spéciaux. Cas pratiques, propositions piégeuses, associations à relier, séquences à ordonner et réponses construites.</p>
- <div class="header-tags"><span>3 matières</span><span>18 rubriques</span><span>270 exercices</span><span>Progression conservée localement</span></div>
+ <div class="header-tags"><span>3 matières</span><span>18 chapitres</span><span>Version 1.1.1</span><span>270 exercices</span><span>Progression conservée localement</span></div>
 </div></header>
 <main>
 <aside>
- <div class="aside-title">Matières et rubriques</div>
+ <div class="aside-title">Matières</div>
  <div id="nav"></div>
  <div class="stat"><span>Progression générale</span><strong id="overall">0 / 270</strong></div>
  <div class="progress"><span id="overallBar"></span></div>
@@ -90,8 +125,8 @@ textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #93c8f51c}
 <section class="workspace">
  <div id="home">
   <div class="kicker">Tableau de bord</div>
-  <h2 style="font-size:1.7rem;margin:8px 0">Choisis une matière et une rubrique.</h2>
-  <p style="color:var(--muted)">Les rubriques restent visibles dans le menu pour organiser les révisions. Pendant les exercices, le titre de la notion n’est pas affiché afin de ne pas donner la réponse. Les cas sont formulés pour obliger à qualifier les faits avant de choisir une règle.</p>
+  <h2 style="font-size:1.7rem;margin:8px 0">Un espace pour étudier le droit.</h2>
+  <p style="color:var(--muted)">Choisis une matière pour accéder à ses chapitres, lire les fiches de révision et t’entraîner. Chaque fiche s’appuie exclusivement sur les questions et corrigés présents dans cette plateforme.</p>
   <div class="home-grid" id="homeGrid"></div>
   <div class="feedback">
    <h3>Correction des réponses rédigées</h3>
@@ -99,7 +134,7 @@ textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #93c8f51c}
   </div>
   <p class="footer">Les réponses et la progression sont conservées dans le navigateur de cet appareil.</p>
  </div>
- <div id="quiz" class="hidden">
+ <div id="chapters" class="hidden"></div><div id="revision" class="hidden"></div><div id="quiz" class="hidden">
   <div class="row">
    <div>
     <div class="tag" id="subjectLabel"></div>
@@ -124,7 +159,7 @@ textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #93c8f51c}
   <div id="feedback" class="hidden"></div>
   <div class="actions" style="justify-content:space-between;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)">
    <div class="actions" style="margin:0"><button class="btn" id="prev">← Précédente</button><button class="btn" id="next">Suivante →</button></div>
-   <button class="btn" id="back">Tableau de bord</button>
+   <button class="btn" id="sheet">Fiche du chapitre</button><button class="btn" id="back">Chapitres</button><button class="btn" id="dashboard">Accueil</button>
   </div>
  </div>
  <div id="sectionEnd" class="hidden section-complete"></div>
@@ -139,18 +174,36 @@ function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",
 function section(){return BANK.find(x=>x.subject===state.subject&&x.title===state.section)}
 function key(q){return state.subject+"|"+state.section+"|"+section().questions.indexOf(q)}
 function visible(){return section().questions.filter(q=>state.filter==="all"||(state.filter==="written"?q.type==="written":q.type!=="written"))}
-function countDone(s){let n=0;BANK.filter(x=>x.subject===s).forEach(x=>x.questions.forEach((q,i)=>{if(state.graded[s+"|"+x.title+"|"+i])n++}));return n}
+function countDone(s){let n=0;BANK.filter(x=>x.subject===s).forEach(x=>x.questions.forEach((q,i)=>{if(Object.prototype.hasOwnProperty.call(state.graded,s+"|"+x.title+"|"+i))n++}));return n}
 function renderNav(){
- $("nav").innerHTML=subjects.map(s=>`<button class="subject ${state.subject===s?'active':''}" data-sub="${esc(s)}">${esc(s)}<small>${countDone(s)} / 90 corrigées</small></button><div class="topic-list">${BANK.filter(x=>x.subject===s).map(x=>`<button class="topic ${state.subject===s&&state.section===x.title?'active':''}" data-s="${esc(s)}" data-t="${esc(x.title)}">${esc(x.title)}</button>`).join("")}</div>`).join("");
+ $("nav").innerHTML=subjects.map(s=>`<button class="subject ${state.subject===s?'active':''}" data-sub="${esc(s)}" aria-pressed="${state.subject===s}">${esc(s)}<small>${countDone(s)} / 90 corrigées</small></button>`).join("");
  document.querySelectorAll("[data-sub]").forEach(b=>b.onclick=()=>showSubject(b.dataset.sub));
- document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>start(b.dataset.s,b.dataset.t));
  const done=Object.keys(state.graded).length;$("overall").textContent=done+" / 270";$("overallBar").style.width=(done/270*100)+"%";
 }
 function renderHome(){
- $("homeGrid").innerHTML=subjects.map(s=>`<div class="home-card"><h3>${esc(s)}</h3><div class="number">90</div><p>${s==="Procédure civile"?"QCM à choix unique et multiples, associations à relier et séquences à reconstituer.":"Environ moitié QCM, moitié réponses construites avec corrigés-types et notions-clés."}</p><div class="stat"><span>Progression</span><strong>${countDone(s)} / 90</strong></div><div class="progress"><span style="width:${countDone(s)/90*100}%"></span></div></div>`).join("");
+ $("homeGrid").innerHTML=subjects.map(s=>`<div class="home-card"><h3>${esc(s)}</h3><div class="number">90</div><p>${s==="Procédure civile"?"QCM à choix unique et multiples, associations à relier et séquences à reconstituer.":"Environ moitié QCM, moitié réponses construites avec corrigés-types et notions-clés."}</p><div class="stat"><span>Progression</span><strong>${countDone(s)} / 90</strong></div><div class="progress"><span style="width:${countDone(s)/90*100}%"></span></div><button class="btn primary" data-home-sub="${esc(s)}">Voir les chapitres</button></div>`).join("");
+ document.querySelectorAll("[data-home-sub]").forEach(b=>b.onclick=()=>showSubject(b.dataset.homeSub));
 }
-function showSubject(s){let first=BANK.find(x=>x.subject===s);start(s,first.title)}
-function start(s,t){state.subject=s;state.section=t;state.index=0;state.filter="all";$("home").classList.add("hidden");$("quiz").classList.remove("hidden");$("sectionEnd").classList.add("hidden");renderNav();renderQ()}
+function showView(id){["home","quiz","chapters","revision","sectionEnd"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function showSubject(s){
+ state.subject=s;showView("chapters");renderNav();
+ $("chapters").innerHTML='<div class="kicker">Matière</div><h2>'+esc(s)+'</h2><p class="note">Sélectionne un chapitre pour réviser ou commencer ses 15 exercices.</p><div class="chapter-grid">'+BANK.filter(x=>x.subject===s).map(x=>'<article class="chapter-card"><h3>'+esc(x.title)+'</h3><p class="note">15 exercices · '+x.questions.filter((q,i)=>Object.prototype.hasOwnProperty.call(state.graded,s+"|"+x.title+"|"+i)).length+' corrigés</p><div class="actions"><button class="btn primary" data-quiz="'+esc(x.title)+'">Commencer le quiz</button><button class="btn" data-sheet="'+esc(x.title)+'">Lire la fiche</button></div></article>').join("")+'</div><button class="btn" id="homeButton">Accueil</button>';
+ $("chapters").querySelectorAll("[data-quiz]").forEach(b=>b.onclick=()=>start(s,b.dataset.quiz));
+ $("chapters").querySelectorAll("[data-sheet]").forEach(b=>b.onclick=()=>showRevision(s,b.dataset.sheet));
+ $("homeButton").onclick=dashboard;
+}
+function dashboard(){state.subject=null;state.section=null;showView("home");renderNav();renderHome()}
+function showRevision(s,t){
+ state.subject=s;state.section=t;showView("revision");renderNav();
+ const chapter=section();
+ $("revision").innerHTML='<div class="kicker">Fiche de révision · '+esc(s)+'</div><h2>'+esc(t)+'</h2><div class="actions"><button class="btn primary" id="practice">S’entraîner sur ce chapitre</button><button class="btn" id="chapterBack">Tous les chapitres</button></div><div class="feedback"><h3>Source et périmètre</h3><p>Cette fiche rassemble les repères des 15 exercices du chapitre, extraits des explications et corrigés existants de index.html. Aucun support de cours indépendant ne figure dans le dépôt. Les références sont reproduites telles quelles ; cette fiche ne constitue pas une vérification du droit en vigueur.</p></div>'+chapter.questions.map((q,i)=>'<article class="revision-item"><h3>Repère '+(i+1)+' · '+esc(q.prompt)+'</h3><p>'+esc(q.why||q.model)+'</p>'+(q.type==="link"?'<ul>'+q.pairs.map(p=>'<li>'+esc(p[0])+' : '+esc(p[1])+'</li>').join("")+'</ul>':q.type==="order"?'<ol>'+q.correct.map(n=>'<li>'+esc(q.items[n])+'</li>').join("")+'</ol>':'')+'<p class="note">Source : exercice '+(i+1)+' · '+(q.model?'corrigé-type':'explication de correction')+'</p></article>').join("")+'<div class="feedback"><h3>Points non couverts ou à compléter</h3><p>Seuls les points exposés ci-dessus sont documentés par les exercices du chapitre. Sans cours complet dans le dépôt, il est impossible de dresser une liste fiable de toutes les notions absentes. Tu peux signaler un point absent de cette fiche, une nuance ou une référence à vérifier.</p><label for="suggestion">Notion à ajouter et extrait de cours ou référence</label><textarea id="suggestion" placeholder="Notion, extrait de cours, question envisagée et réponse attendue…"></textarea><button class="btn" id="prepareSuggestion">Préparer ma suggestion</button><label for="suggestionText">Texte à copier puis à envoyer dans la conversation</label><textarea id="suggestionText" readonly></textarea><p class="note" id="suggestStatus">Aucun envoi automatique. Le brouillon est enregistré sur cet appareil.</p></div>';
+ $("practice").onclick=()=>start(s,t);$("chapterBack").onclick=()=>showSubject(s);
+ const draftKey="atelierJuridiqueSuggestion|"+s+"|"+t;
+ try{$("suggestion").value=localStorage.getItem(draftKey)||""}catch(e){}
+ $("suggestion").oninput=()=>{try{localStorage.setItem(draftKey,$("suggestion").value)}catch(e){}};
+ $("prepareSuggestion").onclick=()=>{$("suggestionText").value="Suggestion — "+s+" — "+t+"\n"+$("suggestion").value;$("suggestionText").focus();$("suggestionText").select();$("suggestStatus").textContent="Texte prêt à copier et à envoyer dans la conversation."};
+}
+function start(s,t){state.subject=s;state.section=t;state.index=0;state.filter="all";showView("quiz");renderNav();renderQ()}
 function renderQ(){
  const qs=visible();if(!qs.length)return;
  if(state.index>=qs.length)state.index=qs.length-1;
@@ -160,11 +213,11 @@ function renderQ(){
  $("typeLabel").textContent=({qcm:"Choix unique",multi:"Choix multiples",written:"Réponse construite",link:"Association à relier",order:"Ordre à reconstituer"})[q.type];
  $("scoreLabel").textContent="Score QCM : "+(state.scores[state.subject]||0);
  $("position").textContent=`Question ${state.index+1} / ${qs.length}`;
- $("completed").textContent=qs.filter(x=>state.graded[state.subject+"|"+state.section+"|"+section().questions.indexOf(x)]).length+" corrigée(s)";
+ $("completed").textContent=qs.filter(x=>Object.prototype.hasOwnProperty.call(state.graded,state.subject+"|"+state.section+"|"+section().questions.indexOf(x))).length+" corrigée(s)";
  $("topicBar").style.width=((state.index+1)/qs.length*100)+"%";
  $("caseText").textContent=q.case;$("questionText").textContent=q.prompt;
  $("feedback").className="hidden";$("feedback").innerHTML="";$("answerArea").innerHTML="";
- $("check").disabled=!!state.graded[k];$("model").style.display=q.type==="written"?"inline-block":"none";
+ $("check").disabled=Object.prototype.hasOwnProperty.call(state.graded,k);$("model").style.display=q.type==="written"?"inline-block":"none";
  if(q.type==="qcm"||q.type==="multi"){
   const chosen=state.responses[k]||[];
   $("answerArea").innerHTML='<div class="options">'+q.opts.map((o,i)=>`<label class="option ${chosen.includes(i)?'selected':''}"><input type="${q.type==="multi"?"checkbox":"radio"}" name="ans" value="${i}" ${chosen.includes(i)?"checked":""}><span>${esc(o)}</span></label>`).join("")+"</div>";
@@ -188,13 +241,13 @@ function renderQ(){
  $("mark").textContent=state.marks[k]?"Marqué pour revoir ★":"Marquer pour revoir ☆";
  $("prev").disabled=state.index===0;$("next").disabled=state.index===qs.length-1;
  document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("primary",b.dataset.filter===state.filter));
- if(state.graded[k])showPrevious(q,k);
+ if(Object.prototype.hasOwnProperty.call(state.graded,k))showPrevious(q,k);
 }
 function persist(){try{localStorage.setItem("atelierJuridiqueV1",JSON.stringify(state))}catch(e){}}
 function restore(){try{let x=JSON.parse(localStorage.getItem("atelierJuridiqueV1")||"null");if(x&&x.responses){Object.assign(state,x)}}catch(e){}}
 function fb(html,kind){$("feedback").className="feedback "+kind;$("feedback").innerHTML=html}
 function grade(){
- const qs=visible(),q=qs[state.index],k=key(q);if(state.graded[k])return;
+ const qs=visible(),q=qs[state.index],k=key(q);if(Object.prototype.hasOwnProperty.call(state.graded,k))return;
  let ok=false;
  if(q.type==="qcm"||q.type==="multi"){
   const a=(state.responses[k]||[]).slice().sort((x,y)=>x-y),b=q.correct.slice().sort((x,y)=>x-y);
@@ -217,13 +270,15 @@ function grade(){
 }
 function showPrevious(q,k){
  $("check").disabled=true;
- if(q.type==="written"){$("model").style.display="inline-block";fb("<h3>Réponse déjà vérifiée</h3><p>Consulte le corrigé-type pour comparer les éléments essentiels.</p>","")}
- else fb("<h3>Question déjà corrigée</h3><p>Ta réponse a déjà été vérifiée pendant cette session.</p>","");
+ if(q.type==="written"){showModel();return}
+ const ok=state.graded[k]===true;
+ let answer=q.correct&&q.opts?q.correct.map(i=>esc(q.opts[i])).join(" ; "):q.type==="link"?q.pairs.map(p=>esc(p.join(" → "))).join("<br>"):q.correct.map(i=>esc(q.items[i])).join(" → ");
+ fb("<h3>"+(ok?"Bonne réponse ✓":"Réponse à revoir")+"</h3><p>"+esc(q.why)+"</p><p><strong>Réponse attendue :</strong> "+answer+"</p>",ok?"good":"bad");
 }
 function showModel(){const q=visible()[state.index];if(q.type!=="written")return;fb(`<h3>Corrigé-type</h3><p>${esc(q.model)}</p><div class="chips">${q.keywords.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div>`,"")}
 $("check").onclick=grade;$("model").onclick=showModel;
 $("next").onclick=()=>{state.index++;renderQ()};$("prev").onclick=()=>{state.index--;renderQ()};
-$("back").onclick=()=>{$("quiz").classList.add("hidden");$("home").classList.remove("hidden");$("sectionEnd").classList.add("hidden");renderHome();renderNav()};
+$("back").onclick=()=>showSubject(state.subject);$("sheet").onclick=()=>showRevision(state.subject,state.section);$("dashboard").onclick=dashboard;
 $("mark").onclick=()=>{const q=visible()[state.index],k=key(q);state.marks[k]=!state.marks[k];persist();$("mark").textContent=state.marks[k]?"Marqué pour revoir ★":"Marquer pour revoir ☆"};
 document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;state.index=0;renderQ()});
 $("reset").onclick=()=>{if(confirm("Effacer toutes les réponses, marques et la progression enregistrée sur cet appareil ?")){state.responses={};state.graded={};state.marks={};state.scores={};persist();renderNav();renderHome();if(!$("quiz").classList.contains("hidden"))renderQ()}};

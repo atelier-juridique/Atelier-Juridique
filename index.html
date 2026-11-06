@@ -523,9 +523,9 @@ function renderDefense(){
  $('defense').querySelectorAll('[data-defense-focus]').forEach(b=>b.onclick=()=>{defenseState.focus=b.dataset.defenseFocus;defenseSelected=null;defenseSave();renderDefense()});
  $('defense').querySelectorAll('[data-defense-card]').forEach(button=>{
   button.onclick=e=>{e.stopPropagation();if(defenseSuppressClick){defenseSuppressClick=false;return}defenseSelected=defenseSelected===button.dataset.defenseCard?null:button.dataset.defenseCard;renderDefense();const current=$('defense').querySelector('[data-defense-card="'+button.dataset.defenseCard+'"]');if(current)current.focus({preventScroll:true})};
-  button.ondragstart=e=>{defenseDragId=button.dataset.defenseCard;defenseSelected=null;e.dataTransfer.setData('application/x-atelier-defense',defenseDragId);e.dataTransfer.setData('text/plain',defenseDragId);e.dataTransfer.effectAllowed='move';button.classList.add('is-dragging')};
+  button.ondragstart=e=>{if(defenseTouch){e.preventDefault();return}defenseDragId=button.dataset.defenseCard;defenseSelected=null;e.dataTransfer.setData('application/x-atelier-defense',defenseDragId);e.dataTransfer.setData('text/plain',defenseDragId);e.dataTransfer.effectAllowed='move';button.classList.add('is-dragging')};
   button.ondragend=()=>{defenseDragId=null;button.classList.remove('is-dragging');document.querySelectorAll('.defense-over').forEach(x=>x.classList.remove('defense-over'))};
-  button.onpointerdown=e=>{if(e.pointerType==='mouse')return;defenseTouch={id:button.dataset.defenseCard,x:e.clientX,y:e.clientY,pointer:e.pointerId,button,ghost:null,target:null,raf:null,lastX:e.clientX,lastY:e.clientY};button.setPointerCapture(e.pointerId)};
+  button.onpointerdown=e=>{if(e.button!==0)return;e.preventDefault();defenseTouch={id:button.dataset.defenseCard,x:e.clientX,y:e.clientY,pointer:e.pointerId,button,ghost:null,target:null,raf:null,lastX:e.clientX,lastY:e.clientY};button.setPointerCapture(e.pointerId)};
   button.onpointermove=defenseTouchMove;
   button.onpointerup=defenseTouchEnd;
   button.onpointercancel=()=>defenseTouchCancel();

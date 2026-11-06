@@ -199,14 +199,57 @@ aside>.stat,aside>.progress{padding-left:10px}
 .dossier-tabs{padding:16px 0;border-top:1px solid var(--divider);border-bottom:1px solid var(--divider)}
 @media(prefers-color-scheme:dark){:root{--divider:#786267}}
 @media(max-width:600px){#nav .subject{border-right:0;border-bottom:1px solid var(--divider);padding:13px 12px}#nav .subject:last-child{border-bottom:0}.header-tags{gap:8px 0}.header-tags span{padding:0 9px}}
-aside>.stat{white-space:nowrap;gap:6px;padding-left:0;font-size:.64rem}aside>.stat strong{flex-shrink:0}aside>.progress{padding-left:0}</style>
+aside>.stat{white-space:nowrap;gap:6px;padding-left:0;font-size:.64rem}aside>.stat strong{flex-shrink:0}aside>.progress{padding-left:0}.defense-intro{max-width:850px;color:var(--muted)}
+.defense-toolbar{padding:16px 0;border-top:1px solid var(--divider);border-bottom:1px solid var(--divider)}
+.defense-summary{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:15px 0;font-size:.85rem}
+.defense-feedback{padding:12px 16px;background:var(--panel2);border-left:3px solid var(--blue);min-height:50px;font-size:.87rem}
+.defense-row-filters{display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:17px 0}
+.defense-row-filters>span{font-size:.8rem;color:var(--muted);margin-right:5px}
+.defense-row-filters .btn{font-size:.74rem;padding:7px 10px}
+.defense-bank{position:sticky;top:0;z-index:10;background:var(--panel);border:1px solid var(--divider);border-top:3px solid var(--blue);border-radius:6px;box-shadow:0 6px 16px #0000000b}
+.defense-bank-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid var(--divider);font-size:.78rem}
+.defense-bank-heading>span{color:var(--muted);font-size:.72rem}
+.defense-bank-heading .btn{font-size:.7rem;padding:4px 8px}
+.defense-bank-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:12px;max-height:190px;min-height:85px;overflow:auto;overscroll-behavior:contain}
+.defense-card{display:grid;grid-template-columns:15px minmax(0,1fr);align-content:start;gap:4px 6px;text-align:left;width:100%;border:1px solid var(--divider);border-radius:5px;background:var(--panel);color:var(--ink);font:500 .76rem/1.5 system-ui,-apple-system,sans-serif;padding:10px;cursor:grab;touch-action:none;user-select:none;overflow-wrap:anywhere;transition:border-color .12s,box-shadow .12s}
+.defense-card:hover{border-color:var(--blue);box-shadow:0 2px 6px #0000000b}
+.defense-card:active{cursor:grabbing}
+.defense-card.is-selected{outline:2px solid var(--blue);outline-offset:1px;background:var(--panel2)}
+.defense-card.is-dragging{opacity:.35}
+.defense-grip{color:var(--muted);font-size:1rem;line-height:1.2}
+.defense-verdict{grid-column:2;font-size:.67rem;font-weight:650;padding-top:3px}
+.defense-card.correct{border:2px solid var(--green)}
+.defense-card.correct .defense-verdict{color:var(--green)}
+.defense-card.incorrect{border:2px dashed var(--red)}
+.defense-card.incorrect .defense-verdict{color:var(--red)}
+.defense-scroll-note{margin:16px 0 10px}
+.defense-table-scroll{overflow:auto;border:1px solid var(--divider);border-radius:6px;background:var(--panel);max-width:100%}
+.defense-table{min-width:1700px;table-layout:fixed;margin:0;border-collapse:separate;border-spacing:0;width:100%}
+.defense-table caption{text-align:left;padding:12px 15px;color:var(--muted);font-size:.76rem;background:var(--panel2);caption-side:top}
+.defense-table .defense-row-column{width:145px}
+.defense-table th,.defense-table td{min-width:0;padding:9px;border:0;border-right:1px solid var(--divider);border-bottom:1px solid var(--divider);vertical-align:top}
+.defense-table thead th{font-size:.77rem;text-align:center;background:var(--panel2)}
+.defense-table th:first-child{position:sticky;left:0;z-index:2;background:var(--panel2);border-right:2px solid var(--divider);font-size:.81rem}
+.defense-table tr:last-child>*{border-bottom:0}
+.defense-table tr>*:last-child{border-right:0}
+.defense-cell{min-height:115px;padding:8px;border:1px dashed var(--divider);border-radius:4px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.defense-cell-address{font-size:.64rem;color:var(--muted);font-weight:550}
+.defense-placeholder{display:grid;place-items:center;min-height:60px;border:1px dashed var(--divider);border-radius:4px;color:var(--muted);font-size:.73rem;text-align:center;padding:10px}
+.defense-cell.is-missing>.defense-placeholder{border-color:var(--red)}
+.defense-drop.defense-over{outline:3px solid var(--blue);outline-offset:-3px;background:var(--panel2)}
+.defense-empty-source{background:var(--panel2);color:var(--muted);font-size:.7rem;font-style:italic}
+.defense-source{margin-top:18px;padding-top:18px;border-top:1px solid var(--divider)}
+.defense-ghost{position:fixed!important;z-index:9999!important;pointer-events:none!important;width:260px!important;max-height:220px;overflow:hidden;opacity:.94!important;box-shadow:0 10px 25px #0004;transform:rotate(2deg);border:2px solid var(--blue)}
+@media(max-width:700px){.defense-bank-cards{grid-template-columns:repeat(2,minmax(0,1fr));max-height:180px}.defense-bank-heading{flex-wrap:wrap;gap:6px}.defense-bank-heading>span{display:none}.defense-summary{font-size:.77rem}.defense-toolbar .btn{font-size:.75rem}.defense-table{min-width:1500px}.defense-table .defense-row-column{width:115px}}
+@media(prefers-reduced-motion:reduce){.defense-card{transition:none}}
+</style>
 </head>
 <body>
 <header><div class="head">
  <div class="kicker">Révisions · entraînement approfondi</div>
  <h1>Atelier juridique</h1>
  <p class="subtitle">Une seule plateforme pour la procédure civile, le droit commun des sociétés et les contrats spéciaux. Cas pratiques, propositions piégeuses, associations à relier, séquences à ordonner et réponses construites.</p>
- <div class="header-tags"><span>3 matières</span><span>18 chapitres</span><span>Version 1.1.4</span><span>270 exercices</span><span>Progression conservée localement</span></div>
+ <div class="header-tags"><span>3 matières</span><span>18 chapitres</span><span>Version 1.1.5</span><span>270 exercices</span><span>Progression conservée localement</span></div>
 </div></header>
 <main>
 <aside>
@@ -228,7 +271,7 @@ aside>.stat{white-space:nowrap;gap:6px;padding-left:0;font-size:.64rem}aside>.st
   </div>
   <p class="footer">Les réponses et la progression sont conservées dans le navigateur de cet appareil.</p>
  </div>
- <div id="dossier" class="hidden"></div><div id="chapters" class="hidden"></div><div id="revision" class="hidden"></div><div id="quiz" class="hidden">
+ <div id="defense" class="hidden"></div><div id="dossier" class="hidden"></div><div id="chapters" class="hidden"></div><div id="revision" class="hidden"></div><div id="quiz" class="hidden">
   <div class="row">
    <div>
     <div class="tag" id="subjectLabel"></div>
@@ -280,13 +323,13 @@ function renderHome(){
  document.querySelectorAll("[data-home-sub]").forEach(b=>b.onclick=()=>showSubject(b.dataset.homeSub));
 }
 function showDossier(){state.subject="Contrats spéciaux";showView("dossier");renderNav();$("dossier").innerHTML=dossierHTML;$("dossierBack").onclick=()=>showSubject(state.subject);$("dossierBottomBack").onclick=()=>showSubject(state.subject);$("dossierQuiz").onclick=()=>start(state.subject,BANK.find(c=>c.subject===state.subject&&c.title.startsWith("03")).title);window.scrollTo({top:0,behavior:"smooth"})}
-function showView(id){["home","quiz","chapters","revision","dossier","sectionEnd"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function showView(id){["home","quiz","chapters","revision","dossier","defense","sectionEnd"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
 function showSubject(s){
  state.subject=s;showView("chapters");renderNav();
  $("chapters").innerHTML='<div class="kicker">Matière</div><h2>'+esc(s)+'</h2><p class="note">Sélectionne un chapitre pour réviser ou commencer ses 15 exercices.</p><div class="chapter-grid">'+BANK.filter(x=>x.subject===s).map(x=>'<article class="chapter-card"><h3>'+esc(x.title)+'</h3><p class="note">15 exercices · '+x.questions.filter((q,i)=>Object.prototype.hasOwnProperty.call(state.graded,s+"|"+x.title+"|"+i)).length+' corrigés</p><div class="actions"><button class="btn primary" data-quiz="'+esc(x.title)+'">Commencer le quiz</button><button class="btn" data-sheet="'+esc(x.title)+'">Lire la fiche</button></div></article>').join("")+'</div><button class="btn" id="homeButton">Accueil</button>';
  $("chapters").querySelectorAll("[data-quiz]").forEach(b=>b.onclick=()=>start(s,b.dataset.quiz));
  $("chapters").querySelectorAll("[data-sheet]").forEach(b=>b.onclick=()=>showRevision(s,b.dataset.sheet));
- $("homeButton").onclick=dashboard; if(s==="Contrats spéciaux"){const box=document.createElement("div");box.className="dossier-entry";box.innerHTML="<div class=\"kicker\">Dossier approfondi · Complément sourcé</div><h3>Avant-contrats de vente</h3><p>Pacte, préemption, PUV, PUA et compromis : conditions, effets, sanctions et cas de confrontation.</p><button class=\"btn primary\" id=\"openDossier\">Comprendre et comparer</button>";$("chapters").prepend(box);$("openDossier").onclick=showDossier;}
+ $("homeButton").onclick=dashboard; if(s==="Procédure civile"){const box=document.createElement("div");box.className="dossier-entry";box.innerHTML="<div class=\"kicker\">Atelier interactif · Glisser-déposer</div><h3>Le tableau des moyens de défense</h3><p>Reconstitue ton tableau : catégories, hypothèses, sanctions, moments d’invocation et règles à retenir.</p><button class=\"btn primary\" id=\"openDefense\">Reconstituer le tableau</button>";$("chapters").prepend(box);$("openDefense").onclick=showDefense;} if(s==="Contrats spéciaux"){const box=document.createElement("div");box.className="dossier-entry";box.innerHTML="<div class=\"kicker\">Dossier approfondi · Complément sourcé</div><h3>Avant-contrats de vente</h3><p>Pacte, préemption, PUV, PUA et compromis : conditions, effets, sanctions et cas de confrontation.</p><button class=\"btn primary\" id=\"openDossier\">Comprendre et comparer</button>";$("chapters").prepend(box);$("openDossier").onclick=showDossier;}
 }
 function dashboard(){state.subject=null;state.section=null;showView("home");renderNav();renderHome()}
 function showRevision(s,t){
@@ -378,5 +421,138 @@ $("back").onclick=()=>showSubject(state.subject);$("sheet").onclick=()=>showRevi
 $("mark").onclick=()=>{const q=visible()[state.index],k=key(q);state.marks[k]=!state.marks[k];persist();$("mark").textContent=state.marks[k]?"Marqué pour revoir ★":"Marquer pour revoir ☆"};
 document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;state.index=0;renderQ()});
 $("reset").onclick=()=>{if(confirm("Effacer toutes les réponses, marques et la progression enregistrée sur cet appareil ?")){state.responses={};state.graded={};state.marks={};state.scores={};persist();renderNav();renderHome();if(!$("quiz").classList.contains("hidden"))renderQ()}};
+// Atelier indépendant : ne modifie ni BANK ni atelierJuridiqueV1.
+const DEFENSE_ROWS = [{"id":"objet","label":"Objet","cells":[{"id":"o-proc","span":5,"cards":["RÉGULARITÉ DE LA PROCÉDURE"]},{"id":"o-action","span":2,"cards":["DROIT D’ACTION"]},{"id":"o-fond","span":1,"cards":["DROIT SUBSTANTIEL"]}]},{"id":"moyens","label":"Moyens de défense","cells":[{"id":"m-proc","span":5,"cards":["Exceptions de procédure"]},{"id":"m-action","span":2,"cards":["Fins de non-recevoir"]},{"id":"m-fond","span":1,"cards":["Défense au fond"]}]},{"id":"hypotheses","label":"Hypothèses","cells":[{"id":"h-comp","span":1,"cards":["Compétence territoriale et compétence d’attribution (art. 75 à 99 CPC)."]},{"id":"h-litis","span":1,"cards":["Litispendance (art. 100 à 107 CPC)."]},{"id":"h-conn","span":1,"cards":["Connexité (art. 100 à 107 CPC)."]},{"id":"h-dil","span":1,"cards":["Exceptions dilatoires (art. 108 à 111 CPC)."]},{"id":"h-null","span":1,"cards":["Exception de nullité pour irrégularité ou vice de fond (art. 117 à 121 CPC).","Exception de nullité pour vice de forme (art. 112 à 116 CPC)."]},{"id":"h-subj","span":1,"cards":["Absence d’une condition subjective : intérêt et qualité à agir, par exemple."]},{"id":"h-obj","span":1,"cards":["Absence d’une condition objective : délai de prescription, délai préfixe, chose jugée, par exemple."]},{"id":"h-fond","span":1,"cards":["Illustrations : existence d’une créance, octroi de dommages et intérêts…"]}]},{"id":"sanctions","label":"Sanction","cells":[{"id":"s-comp","span":1,"cards":["Incompétence."]},{"id":"s-dess","span":2,"cards":["Dessaisissement d’une juridiction."]},{"id":"s-dil","span":1,"cards":["Suspension du cours de l’instance."]},{"id":"s-null","span":1,"cards":["Nullité."]},{"id":"s-action","span":2,"cards":["Irrecevabilité (art. 122 CPC)."]},{"id":"s-fond","span":1,"cards":["Mal-fondé ou débouté (art. 30 CPC)."]}]},{"id":"moments","label":"Moments d’invocation","cells":[{"id":"t-comp-litis","span":2,"cards":["In limine litis.","Litispendance : le juge peut la relever d’office (art. 100 CPC)."]},{"id":"t-conn","span":1,"cards":["Connexité : en tout état de cause (art. 103 CPC).","Connexité : l’exception peut être écartée en cas d’intention dilatoire (art. 103 CPC)."]},{"id":"t-dil","span":1,"cards":["Exceptions dilatoires : in limine litis, au fur et à mesure de leur accomplissement, avant toute défense au fond et fin de non-recevoir."]},{"id":"t-null","span":1,"cards":["Irrégularités de fond : en tout état de cause.","Irrégularités de fond : dommages-intérêts possibles en cas d’intention dilatoire (art. 118 CPC).","Vices de forme : simultanément, in limine litis ou au fur et à mesure de leur accomplissement, avant toute défense au fond et fin de non-recevoir."]},{"id":"t-action","span":2,"cards":["Fins de non-recevoir : en tout état de cause, à moins qu’il en soit disposé autrement (art. 123 CPC).","Fins de non-recevoir : dommages-intérêts possibles en cas d’intention dilatoire (art. 123 CPC).","Le juge doit relever d’office les fins de non-recevoir d’ordre public, notamment celles tenant aux délais et voies de recours (art. 125 CPC).","Le juge peut relever d’office le défaut d’intérêt, de qualité et la chose jugée (art. 125, al. 2 CPC)."]},{"id":"t-fond","span":1,"cards":["Défense au fond : en tout état de cause (art. 72 CPC).","Défense au fond : attention à la concentration des moyens."]}]},{"id":"retenir","label":"Éléments à retenir","cells":[{"id":"r-comp","span":3,"cards":["Celui qui invoque l’exception d’incompétence, en première instance ou en appel, doit la motiver et préciser la juridiction qu’il estime compétente, à peine d’irrecevabilité (art. 75 CPC)."]},{"id":"r-dil","span":1,"cards":["Le bénéficiaire ne propose ses autres exceptions de procédure qu’après l’expiration du délai (art. 111 CPC)."]},{"id":"r-null","span":1,"cards":["Pour la régularisation des nullités : renvoi du document à un autre tableau sur la régularité de la procédure."]},{"id":"r-action","span":2,"cards":["Si la fin de non-recevoir est susceptible d’être régularisée, il n’y a pas d’irrecevabilité lorsque sa cause a disparu au moment où le juge statue (art. 126 CPC)."]},{"id":"r-vide","span":1,"cards":[]}]}];
+const DEFENSE_CELLS = DEFENSE_ROWS.flatMap(row=>row.cells.map(cell=>({...cell,row:row.id,rowLabel:row.label})));
+const DEFENSE_CARDS = DEFENSE_CELLS.flatMap(cell=>cell.cards.map((text,i)=>({id:cell.id+'-'+i,text,target:cell.id,row:cell.row})));
+const DEFENSE_STORAGE = 'atelierJuridiqueTableauDefenseV1';
+let defenseState = {placements:{},order:[],checked:false,solution:false,focus:'all'};
+let defenseSelected = null;
+let defenseDragId = null;
+let defenseSuppressClick = false;
+let defenseTouch = null;
+function defenseShuffle(ids){const a=ids.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function defenseRestore(){
+ try{
+  const saved=JSON.parse(localStorage.getItem(DEFENSE_STORAGE)||'null');
+  if(saved&&saved.placements&&typeof saved.placements==='object'){
+   const placements={};
+   for(const card of DEFENSE_CARDS){const target=saved.placements[card.id],cell=DEFENSE_CELLS.find(c=>c.id===target);if(cell&&Object.values(placements).filter(x=>x===target).length<cell.cards.length)placements[card.id]=target}
+   const ids=new Set(DEFENSE_CARDS.map(c=>c.id));
+   const order=Array.isArray(saved.order)?saved.order.filter((id,i,a)=>ids.has(id)&&a.indexOf(id)===i):[];
+   defenseState={placements,order:[...order,...DEFENSE_CARDS.map(c=>c.id).filter(id=>!order.includes(id))],checked:saved.checked===true,solution:saved.solution===true,focus:DEFENSE_ROWS.some(r=>r.id===saved.focus)?saved.focus:'all'};
+  }
+ }catch(e){}
+ if(!defenseState.order.length)defenseState.order=defenseShuffle(DEFENSE_CARDS.map(c=>c.id));
+}
+function defenseSave(){try{localStorage.setItem(DEFENSE_STORAGE,JSON.stringify(defenseState));return true}catch(e){return false}}
+function defenseResult(){
+ const placed=DEFENSE_CARDS.filter(c=>defenseState.placements[c.id]);
+ return {placed:placed.length,correct:placed.filter(c=>defenseState.placements[c.id]===c.target).length,total:DEFENSE_CARDS.length};
+}
+function defenseAnnounce(message){const status=$('defenseStatus');if(status)status.textContent=message}
+function defensePlace(id,target){
+ const card=DEFENSE_CARDS.find(c=>c.id===id);if(!card)return false;
+ if(target==='bank'){
+  delete defenseState.placements[id];defenseSelected=null;defenseSave();renderDefense();defenseAnnounce('Élément remis dans la réserve.');return true;
+ }
+ const cell=DEFENSE_CELLS.find(c=>c.id===target);if(!cell||!cell.cards.length)return false;
+ const current=defenseState.placements[id];if(current===target){defenseSelected=null;renderDefense();return true}
+ const occupants=DEFENSE_CARDS.filter(c=>defenseState.placements[c.id]===target);
+ if(occupants.length>=cell.cards.length){
+  if(cell.cards.length===1){delete defenseState.placements[occupants[0].id]}
+  else{defenseAnnounce('Cette case est pleine. Retire ou déplace un élément avant de la compléter.');return false}
+ }
+ defenseState.placements[id]=target;defenseSelected=null;
+ const saved=defenseSave();renderDefense();
+ defenseAnnounce('Élément déposé dans « '+cell.rowLabel+' ». '+(!saved?'La sauvegarde locale est indisponible.':''));return true;
+}
+function defenseCardHTML(card){
+ const assigned=defenseState.placements[card.id];
+ const mark=assigned&&defenseState.checked?(assigned===card.target?'correct':'incorrect'):'';
+ const label=mark==='correct'?'Bien placé':mark==='incorrect'?'À déplacer':'';
+ return '<button type="button" class="defense-card '+mark+(defenseSelected===card.id?' is-selected':'')+'" draggable="true" data-defense-card="'+card.id+'" aria-pressed="'+(defenseSelected===card.id)+'" aria-label="'+esc(card.text+(label?' — '+label:''))+'"><span class="defense-grip" aria-hidden="true">⠿</span><span class="defense-card-text">'+esc(card.text)+'</span>'+(label?'<span class="defense-verdict">'+(mark==='correct'?'✓ ':'↺ ')+label+'</span>':'')+'</button>';
+}
+function showDefense(){
+ state.subject='Procédure civile';defenseSelected=null;showView('defense');renderNav();renderDefense();
+ $('defense').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderDefense(){
+ const result=defenseResult(),focus=defenseState.focus;
+ const cards=defenseState.order.map(id=>DEFENSE_CARDS.find(c=>c.id===id));
+ const available=cards.filter(c=>!defenseState.placements[c.id]&&(focus==='all'||c.row===focus));
+ const selected=DEFENSE_CARDS.find(c=>c.id===defenseSelected);
+ $('defense').innerHTML=`
+  <div class="kicker">Procédure civile · Atelier interactif</div>
+  <h2>Reconstituer le tableau des moyens de défense</h2>
+  <p class="defense-intro">Glisse chaque élément dans la bonne case. Les lignes et les cellules fusionnées suivent ton document ; les contenus sont à replacer. Une case peut recevoir plusieurs éléments.</p>
+  <div class="actions defense-toolbar">
+   <button class="btn" id="defenseBack">Retour aux chapitres</button>
+   <button class="btn primary" id="defenseCheck">Vérifier le tableau</button>
+   <button class="btn" id="defenseRetry">Reprendre les erreurs</button>
+   <button class="btn" id="defenseSolution">Voir le corrigé</button>
+   <button class="btn" id="defenseRestart">Recommencer</button>
+  </div>
+  <div class="defense-summary"><span><strong>${result.placed} / ${result.total}</strong> éléments placés</span><span>${defenseState.solution?'Corrigé consulté · entraînement accompagné':defenseState.checked?'<strong>'+result.correct+' / '+result.total+'</strong> bien placés':'Vérifie quand tu veux, même si le tableau est incomplet.'}</span></div>
+  <div class="defense-feedback" id="defenseStatus" role="status" aria-live="polite">${defenseState.solution?'Tu consultes le corrigé. « Recommencer » permet une nouvelle tentative.':defenseState.checked&&result.correct===result.total?'✓ Tableau entièrement reconstitué. Bravo !':selected?'Élément sélectionné. Clique sur une case ou valide-la avec Entrée.':'Glisser-déposer, ou cliquer sur un élément puis sur sa case. Échap annule la sélection.'}</div>
+  <div class="defense-row-filters" role="group" aria-label="Ligne à travailler"><span>Travailler :</span><button class="btn ${focus==='all'?'primary':''}" data-defense-focus="all">Tout le tableau</button>${DEFENSE_ROWS.map(r=>'<button class="btn '+(focus===r.id?'primary':'')+'" data-defense-focus="'+r.id+'">'+esc(r.label)+'</button>').join('')}</div>
+  <section class="defense-bank" aria-label="Réserve des éléments à placer">
+   <div class="defense-bank-heading"><strong>Réserve · ${available.length} élément${available.length>1?'s':''}</strong><span>Dépose ici pour retirer un élément du tableau.</span><button class="btn" id="defenseUnselect" ${!selected?'disabled':''}>Annuler la sélection</button></div>
+   <div class="defense-bank-cards defense-drop" data-defense-target="bank" tabindex="0" role="group" aria-label="Réserve : remettre ici l’élément sélectionné">${available.map(defenseCardHTML).join('')||'<p class="note">'+(focus==='all'?'Tous les éléments ont été déposés. Tu peux encore les déplacer.':'Tous les éléments de cette ligne sont déposés. Choisis une autre ligne ou vérifie.')+'</p>'}</div>
+  </section>
+  <p class="note defense-scroll-note">Fais défiler le tableau horizontalement pour voir les colonnes A à H. La réserve reste accessible en haut pendant le défilement vertical.</p>
+  <div class="defense-table-scroll" tabindex="0" role="region" aria-label="Tableau à reconstituer, défilement horizontal"><table class="defense-table"><caption>Tableau vierge à compléter · les lettres servent uniquement à repérer les colonnes.</caption><colgroup><col class="defense-row-column">${Array.from({length:8},()=>'<col>').join('')}</colgroup><thead><tr><th scope="col">Lignes / colonnes</th>${'ABCDEFGH'.split('').map(c=>'<th scope="col">'+c+'</th>').join('')}</tr></thead><tbody>${DEFENSE_ROWS.filter(row=>focus==='all'||row.id===focus).map(row=>{
+   let offset=0;
+   return '<tr><th scope="row">'+esc(row.label)+'</th>'+row.cells.map(cell=>{
+    const start=offset;offset+=cell.span;
+    if(!cell.cards.length)return '<td colspan="'+cell.span+'" class="defense-empty-source"><span>Case vide dans le document</span></td>';
+    const occupants=cards.filter(c=>defenseState.placements[c.id]===cell.id);
+    const columns=cell.span===1?'ABCDEFGH'[start]:'ABCDEFGH'[start]+' à '+'ABCDEFGH'[offset-1];
+    const missing=cell.cards.length-occupants.length;
+    return '<td colspan="'+cell.span+'"><div class="defense-drop defense-cell '+(defenseState.checked&&missing?' is-missing':'')+'" tabindex="0" role="group" data-defense-target="'+cell.id+'" aria-label="'+esc(row.label)+', colonne '+columns+', '+occupants.length+' sur '+cell.cards.length+' éléments"><span class="defense-cell-address">'+columns+' · '+occupants.length+'/'+cell.cards.length+'</span>'+occupants.map(defenseCardHTML).join('')+(missing?'<span class="defense-placeholder">Déposer '+missing+' élément'+(missing>1?'s':'')+'</span>':'')+'</div></td>';
+   }).join('')+'</tr>';
+  }).join('')}</tbody></table></div>
+  <p class="note defense-source">Source : tableau fourni « tableau-md.pdf ». Les contenus sont répartis en cartes et les formulations légèrement harmonisées. Les cases vides du document ne demandent aucun élément. Le renvoi à un autre tableau sur la régularisation est reproduit, sans inventer son contenu. Cette activité est indépendante des 270 exercices ; ses placements sont enregistrés dans ce navigateur.</p>`;
+ $('defenseBack').onclick=()=>showSubject('Procédure civile');
+ $('defenseCheck').onclick=()=>{defenseState.checked=true;defenseSave();renderDefense();const r=defenseResult();defenseAnnounce(r.correct===r.total?'✓ Tableau entièrement reconstitué. Bravo !':r.correct+' éléments bien placés, '+(r.placed-r.correct)+' à déplacer et '+(r.total-r.placed)+' à placer. Les éléments corrects portent une coche ; les autres sont signalés « À déplacer ».')};
+ $('defenseRetry').disabled=!defenseState.checked||defenseState.solution;
+ $('defenseRetry').onclick=()=>{for(const c of DEFENSE_CARDS)if(defenseState.placements[c.id]!==c.target)delete defenseState.placements[c.id];defenseSelected=null;defenseSave();renderDefense();defenseAnnounce('Les éléments bien placés sont conservés. Les autres sont revenus dans la réserve.')};
+ $('defenseSolution').onclick=()=>{defenseState.placements=Object.fromEntries(DEFENSE_CARDS.map(c=>[c.id,c.target]));defenseState.checked=true;defenseState.solution=true;defenseSelected=null;defenseSave();renderDefense()};
+ $('defenseRestart').onclick=()=>{defenseState={placements:{},order:defenseShuffle(DEFENSE_CARDS.map(c=>c.id)),checked:false,solution:false,focus:defenseState.focus};defenseSelected=null;defenseSave();renderDefense();defenseAnnounce('Nouvelle tentative : tableau vidé et réserve mélangée.')};
+ $('defenseUnselect').onclick=()=>{defenseSelected=null;renderDefense()};
+ $('defense').querySelectorAll('[data-defense-focus]').forEach(b=>b.onclick=()=>{defenseState.focus=b.dataset.defenseFocus;defenseSelected=null;defenseSave();renderDefense()});
+ $('defense').querySelectorAll('[data-defense-card]').forEach(button=>{
+  button.onclick=e=>{e.stopPropagation();if(defenseSuppressClick){defenseSuppressClick=false;return}defenseSelected=defenseSelected===button.dataset.defenseCard?null:button.dataset.defenseCard;renderDefense();const current=$('defense').querySelector('[data-defense-card="'+button.dataset.defenseCard+'"]');if(current)current.focus({preventScroll:true})};
+  button.ondragstart=e=>{defenseDragId=button.dataset.defenseCard;defenseSelected=null;e.dataTransfer.setData('application/x-atelier-defense',defenseDragId);e.dataTransfer.setData('text/plain',defenseDragId);e.dataTransfer.effectAllowed='move';button.classList.add('is-dragging')};
+  button.ondragend=()=>{defenseDragId=null;button.classList.remove('is-dragging');document.querySelectorAll('.defense-over').forEach(x=>x.classList.remove('defense-over'))};
+  button.onpointerdown=e=>{if(e.pointerType==='mouse')return;defenseTouch={id:button.dataset.defenseCard,x:e.clientX,y:e.clientY,pointer:e.pointerId,button,ghost:null,target:null,raf:null,lastX:e.clientX,lastY:e.clientY};button.setPointerCapture(e.pointerId)};
+  button.onpointermove=defenseTouchMove;
+  button.onpointerup=defenseTouchEnd;
+  button.onpointercancel=()=>defenseTouchCancel();
+ });
+ $('defense').querySelectorAll('[data-defense-target]').forEach(zone=>{
+  zone.ondragover=e=>{if(!defenseDragId)return;e.preventDefault();e.dataTransfer.dropEffect='move';zone.classList.add('defense-over')};
+  zone.ondragleave=e=>{if(!zone.contains(e.relatedTarget))zone.classList.remove('defense-over')};
+  zone.ondrop=e=>{e.preventDefault();e.stopPropagation();zone.classList.remove('defense-over');const id=e.dataTransfer.getData('application/x-atelier-defense');if(id&&id===defenseDragId){defensePlace(id,zone.dataset.defenseTarget);defenseDragId=null}};
+  zone.onclick=e=>{if(e.target.closest('[data-defense-card]'))return;if(defenseSelected)defensePlace(defenseSelected,zone.dataset.defenseTarget)};
+  zone.onkeydown=e=>{if(e.target!==zone)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();if(defenseSelected)defensePlace(defenseSelected,zone.dataset.defenseTarget)}};
+ });
+}
+function defenseTouchMove(e){
+ const drag=defenseTouch;if(!drag||e.pointerId!==drag.pointer)return;
+ drag.lastX=e.clientX;drag.lastY=e.clientY;
+ if(!drag.ghost&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<8)return;
+ if(!drag.ghost){
+  drag.ghost=drag.button.cloneNode(true);drag.ghost.removeAttribute('id');drag.ghost.classList.add('defense-ghost');drag.ghost.setAttribute('aria-hidden','true');document.body.appendChild(drag.ghost);drag.button.classList.add('is-dragging');
+  const scroll=()=>{if(defenseTouch!==drag||!drag.ghost)return;const x=drag.lastX,y=drag.lastY;if(y>window.innerHeight-65)window.scrollBy(0,10);else if(y<65)window.scrollBy(0,-10);const table=$('defense').querySelector('.defense-table-scroll'),r=table.getBoundingClientRect();if(y>r.top&&y<r.bottom){if(x>r.right-45)table.scrollLeft+=10;else if(x<r.left+45)table.scrollLeft-=10}drag.raf=requestAnimationFrame(scroll)};drag.raf=requestAnimationFrame(scroll);
+ }
+ e.preventDefault();drag.ghost.style.left=(e.clientX+12)+'px';drag.ghost.style.top=(e.clientY+12)+'px';
+ const zone=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-defense-target]');if(drag.target!==zone){if(drag.target)drag.target.classList.remove('defense-over');drag.target=zone;if(zone)zone.classList.add('defense-over')}
+}
+function defenseTouchCancel(){const drag=defenseTouch;if(!drag)return;if(drag.ghost)drag.ghost.remove();if(drag.target)drag.target.classList.remove('defense-over');drag.button.classList.remove('is-dragging');if(drag.raf)cancelAnimationFrame(drag.raf);defenseTouch=null}
+function defenseTouchEnd(e){const drag=defenseTouch;if(!drag||drag.pointer!==e.pointerId)return;const target=drag.target?.dataset.defenseTarget,id=drag.id,moved=!!drag.ghost;defenseTouchCancel();if(moved){defenseSuppressClick=true;setTimeout(()=>{defenseSuppressClick=false},0);if(target)defensePlace(id,target);else defenseAnnounce('Dépose l’élément dans une case du tableau ou dans la réserve.')}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(defenseSelected||defenseTouch)){defenseTouchCancel();defenseSelected=null;if(!$('defense').classList.contains('hidden'))renderDefense()}});
+defenseRestore();
+
 restore();renderNav();renderHome();
 </script></body></html>
